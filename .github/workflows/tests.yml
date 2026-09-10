@@ -56,6 +56,11 @@ jobs:
           INERTIA_SSR_ENABLED: 'false'
         run: php artisan migrate --force
 
+      - name: Build Vue application
+        env:
+          INERTIA_SSR_ENABLED: 'false'
+        run: npm run build
+
       - name: Run Laravel tests
         env:
           APP_ENV: testing
@@ -67,8 +72,3 @@ jobs:
           MAIL_MAILER: array
           INERTIA_SSR_ENABLED: 'false'
         run: php artisan test
-
-      - name: Build Vue application
-        env:
-          INERTIA_SSR_ENABLED: 'false'
-        run: npm run build

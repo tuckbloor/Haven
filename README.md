@@ -1,58 +1,412 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Haven
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Haven is a smart-home automation simulator built with **Laravel 13** and **Vue 3**.
 
-## About Laravel
+The project is being developed as a practical application for learning and demonstrating modern full-stack development, automated testing, Docker, Continuous Integration (CI), and eventually Continuous Deployment (CD).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Haven will allow users to create and manage a simulated smart home containing rooms, devices, automations, schedules, and alerts.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Project Goals
 
-## Learning Laravel
+Haven has two main goals:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Build a complete smart-home management application.
+2. Use the project to learn and demonstrate professional development, testing, Docker, and CI/CD practices.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+The project will gradually introduce more advanced testing and DevOps techniques as development progresses.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## Technology Stack
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Backend
 
-```bash
-composer require laravel/boost --dev
+- PHP 8.5
+- Laravel 13
+- Laravel Breeze
+- Inertia.js
+- SQLite
 
-php artisan boost:install
+### Frontend
+
+- Vue 3
+- Composition API
+- Vite
+- Tailwind CSS
+- Inertia.js
+
+### Development & Deployment
+
+- Docker
+- Docker Compose
+- nginx
+- PHP-FPM
+- Git
+- GitHub
+- GitHub Actions
+
+---
+
+## Application Architecture
+
+Haven is a normal Laravel and Vue application.
+
+Docker provides an isolated environment around the application but the source code remains a standard Laravel project.
+
+```text
+Haven
+│
+├── Laravel 13
+│   ├── Routes
+│   ├── Controllers
+│   ├── Models
+│   ├── Services
+│   └── PHPUnit Tests
+│
+├── Vue 3
+│   ├── Pages
+│   ├── Components
+│   └── Frontend Tests
+│
+├── Inertia.js
+│   └── Connects Laravel and Vue
+│
+├── SQLite
+│
+├── Docker
+│   ├── nginx
+│   └── PHP-FPM
+│
+└── GitHub Actions
+    └── Automated CI Pipeline
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## Docker
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Haven includes a Docker environment for running the application locally in a production-style setup.
 
-## Code of Conduct
+The Docker environment currently contains:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```text
+Docker Compose
+│
+├── nginx
+│   └── Web server
+│
+└── PHP-FPM
+    └── Laravel application
+```
 
-## Security Vulnerabilities
+The Laravel source code is mounted into the containers, meaning the same application can be developed normally on Windows while also being executed and tested through Docker.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+The local application is available at:
+
+```text
+http://localhost:8090
+```
+
+Docker configuration is stored in:
+
+```text
+compose.yaml
+
+docker/
+├── nginx/
+│   └── default.conf
+│
+└── php/
+    └── Dockerfile
+```
+
+---
+
+## Automated Testing
+
+Testing is a major part of the Haven project.
+
+Laravel tests are stored under:
+
+```text
+tests/
+├── Feature/
+└── Unit/
+```
+
+The test suite currently covers areas including authentication and user account behaviour.
+
+Examples include:
+
+- Login page
+- User authentication
+- Invalid login attempts
+- Registration
+- Logout
+- Password reset
+- Password confirmation
+- Email verification
+- Profile management
+
+Tests can be run locally with:
+
+```bash
+php artisan test
+```
+
+As Haven grows, the testing suite will expand to cover:
+
+```text
+Unit Testing
+Feature Testing
+Database Testing
+Authentication Testing
+Validation Testing
+HTTP Testing
+API Testing
+Mocking
+Fakes
+Events
+Notifications
+Queues
+Mail
+Storage
+Scheduled Tasks
+Frontend Testing
+End-to-End Testing
+```
+
+The long-term goal is to use Haven to demonstrate a large range of real-world Laravel and PHP testing techniques.
+
+---
+
+## Continuous Integration
+
+Haven uses **GitHub Actions** for Continuous Integration.
+
+The workflow is stored in:
+
+```text
+.github/workflows/tests.yml
+```
+
+When code is pushed to:
+
+```text
+main
+develop
+```
+
+or a Pull Request targets those branches, GitHub automatically creates a clean Linux environment and validates the application.
+
+The pipeline performs:
+
+```text
+Git Push
+    │
+    ▼
+GitHub Actions
+    │
+    ├── Checkout Haven
+    │
+    ├── Install PHP 8.5
+    │
+    ├── Install Composer dependencies
+    │
+    ├── Install Node 24
+    │
+    ├── Install npm dependencies
+    │
+    ├── Configure Laravel
+    │
+    ├── Generate Ziggy routes
+    │
+    ├── Run database migrations
+    │
+    ├── Build Vue / Vite
+    │
+    └── Run Laravel tests
+    │
+    ▼
+PASS / FAIL
+```
+
+This means every pushed change can be automatically checked before it is considered safe.
+
+---
+
+## Why CI Matters
+
+Without CI, tests depend on a developer remembering to run them manually.
+
+With Haven's CI pipeline:
+
+```text
+Developer changes code
+        ↓
+Developer commits code
+        ↓
+Developer pushes to GitHub
+        ↓
+GitHub automatically builds Haven
+        ↓
+GitHub automatically runs the tests
+        ↓
+       PASS?
+      /     \
+    YES      NO
+     ↓        ↓
+    ✓        ✗
+ Safe     Fix code
+```
+
+This helps detect problems early and ensures that changes are tested consistently.
+
+---
+
+## CI/CD Roadmap
+
+Haven currently focuses on **Continuous Integration**.
+
+Future stages will expand the pipeline to include:
+
+```text
+Code
+ ↓
+Automated Tests
+ ↓
+Frontend Tests
+ ↓
+Static Analysis
+ ↓
+Code Style Checks
+ ↓
+Security Checks
+ ↓
+Build Docker Image
+ ↓
+Health Check
+ ↓
+Deployment
+ ↓
+Rollback if required
+```
+
+This will allow Haven to be used as a practical environment for learning a complete CI/CD workflow.
+
+---
+
+## Planned Haven Features
+
+Haven will gradually grow into a complete simulated smart-home system.
+
+Planned functionality includes:
+
+- User authentication
+- Homes
+- Rooms
+- Smart devices
+- Device status
+- Device controls
+- Automations
+- Automation rules
+- Schedules
+- Alerts
+- Activity history
+- Dashboard statistics
+- Smart-home simulation
+
+Example:
+
+```text
+Home
+│
+├── Living Room
+│   ├── Main Light
+│   ├── Television
+│   └── Temperature Sensor
+│
+├── Kitchen
+│   ├── Lights
+│   └── Smart Plug
+│
+└── Bedroom
+    ├── Lights
+    └── Heating
+```
+
+Automations will eventually allow rules such as:
+
+```text
+IF motion is detected
+AND time is after 18:00
+THEN turn on hallway light
+```
+
+These features will provide realistic scenarios for automated testing.
+
+---
+
+## Development Workflow
+
+The intended Haven development workflow is:
+
+```text
+Create feature
+      ↓
+Write / update tests
+      ↓
+Run tests locally
+      ↓
+Commit changes
+      ↓
+Push to GitHub
+      ↓
+GitHub Actions runs CI
+      ↓
+PASS
+      ↓
+Continue development
+```
+
+If CI fails, the failure can be investigated before the change progresses further.
+
+---
+
+## Project Status
+
+Haven is currently under active development.
+
+Current work includes:
+
+- Laravel 13 application
+- Vue 3 frontend
+- Inertia.js integration
+- Server-side rendering support
+- Laravel Breeze authentication
+- SQLite database
+- Docker development environment
+- nginx + PHP-FPM
+- PHPUnit automated tests
+- GitHub repository
+- GitHub Actions CI pipeline
+
+Future development will add the smart-home domain and progressively more advanced testing and DevOps practices.
+
+---
+
+## Repository
+
+Haven is maintained on GitHub under:
+
+```text
+tuckbloor/Haven
+```
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the terms contained in the repository's `LICENSE` file.

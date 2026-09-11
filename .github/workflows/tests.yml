@@ -99,6 +99,13 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
+      - name: Create deployment environment file
+        shell: powershell
+        run: Copy-Item .env.example .env -Force
+
+      - name: Generate application key
+        run: php artisan key:generate
+
       - name: Generate Ziggy routes
         run: php artisan ziggy:generate resources/js/ziggy.js
 

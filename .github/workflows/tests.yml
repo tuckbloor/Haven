@@ -72,3 +72,37 @@ jobs:
           MAIL_MAILER: array
           INERTIA_SSR_ENABLED: 'false'
         run: php artisan test
+
+  deploy-test:
+    needs: test
+
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    runs-on:
+      - self-hosted
+      - Windows
+      - X64
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist --optimize-autoloader
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Generate Ziggy routes
+        run: php artisan ziggy:generate resources/js/ziggy.js
+
+      - name: Build Vue application
+        env:
+          INERTIA_SSR_ENABLED: 'false'
+        run: npm run build
+
+      - name: Deploy Haven test site
+        run: docker compose -f compose.test.yaml up -d --build
+
+      - name: Run database migrations
+        run: docker compose -f compose.test.yaml exec -T app php artisan migrate --force

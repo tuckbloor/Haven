@@ -15,38 +15,6 @@ var __exportAll = (all, no_symbols) => {
 	return target;
 };
 //#endregion
-//#region \0plugin-vue:export-helper
-var _plugin_vue_export_helper_default = (sfc, props) => {
-	const target = sfc.__vccOpts || sfc;
-	for (const [key, val] of props) target[key] = val;
-	return target;
-};
-//#endregion
-//#region resources/js/Pages/Auth/ConfirmPassword.vue
-var ConfirmPassword_exports = /* @__PURE__ */ __exportAll({ default: () => ConfirmPassword_default });
-var _sfc_main$25 = {
-	__name: "ConfirmPassword",
-	__ssrInlineRender: true,
-	setup(__props) {
-		const form = useForm({ password: "" });
-		return (_ctx, _push, _parent, _attrs) => {
-			_push(`<!--[-->`);
-			_push(ssrRenderComponent(unref(Head), { title: "Confirm Password" }, null, _parent));
-			_push(`<div class="auth-page" data-v-8a81e80d><section class="auth-left" data-v-8a81e80d><div class="brand" data-v-8a81e80d><div class="brand-mark" data-v-8a81e80d>H</div><span data-v-8a81e80d>Haven</span></div><div class="welcome-content" data-v-8a81e80d><p class="eyebrow" data-v-8a81e80d>SECURITY CHECK</p><h1 data-v-8a81e80d>Confirm Your Password</h1><p class="welcome-copy" data-v-8a81e80d> This is a secure area of Haven. Confirm your password before continuing. </p></div></section><section class="auth-right" data-v-8a81e80d><div class="form-card" data-v-8a81e80d><div class="form-heading" data-v-8a81e80d><h2 data-v-8a81e80d>Confirm Password</h2><p data-v-8a81e80d> Enter your current password to continue. </p></div><form data-v-8a81e80d><div class="field" data-v-8a81e80d><label for="password" data-v-8a81e80d>Password</label><input id="password"${ssrRenderAttr("value", unref(form).password)} type="password" autocomplete="current-password" autofocus placeholder="Enter your password" data-v-8a81e80d>`);
-			if (unref(form).errors.password) _push(`<p class="field-error" data-v-8a81e80d>${ssrInterpolate(unref(form).errors.password)}</p>`);
-			else _push(`<!---->`);
-			_push(`</div><button type="submit" class="confirm-button"${ssrIncludeBooleanAttr(unref(form).processing) ? " disabled" : ""} data-v-8a81e80d>${ssrInterpolate(unref(form).processing ? "Confirming..." : "Confirm Password")}</button></form></div></section></div><!--]-->`);
-		};
-	}
-};
-var _sfc_setup$25 = _sfc_main$25.setup;
-_sfc_main$25.setup = (props, ctx) => {
-	const ssrContext = useSSRContext();
-	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Auth/ConfirmPassword.vue");
-	return _sfc_setup$25 ? _sfc_setup$25(props, ctx) : void 0;
-};
-var ConfirmPassword_default = /*#__PURE__*/ _plugin_vue_export_helper_default(_sfc_main$25, [["__scopeId", "data-v-8a81e80d"]]);
-//#endregion
 //#region vendor/tightenco/ziggy/dist/index.esm.js
 function t(t, e) {
 	for (var n = 0; n < e.length; n++) {
@@ -797,6 +765,38 @@ var Ziggy$1 = {
 };
 if (typeof window !== "undefined" && typeof window.Ziggy !== "undefined") Object.assign(Ziggy$1.routes, window.Ziggy.routes);
 //#endregion
+//#region \0plugin-vue:export-helper
+var _plugin_vue_export_helper_default = (sfc, props) => {
+	const target = sfc.__vccOpts || sfc;
+	for (const [key, val] of props) target[key] = val;
+	return target;
+};
+//#endregion
+//#region resources/js/Pages/Auth/ConfirmPassword.vue
+var ConfirmPassword_exports = /* @__PURE__ */ __exportAll({ default: () => ConfirmPassword_default });
+var _sfc_main$25 = {
+	__name: "ConfirmPassword",
+	__ssrInlineRender: true,
+	setup(__props) {
+		const form = useForm({ password: "" });
+		return (_ctx, _push, _parent, _attrs) => {
+			_push(`<!--[-->`);
+			_push(ssrRenderComponent(unref(Head), { title: "Confirm Password" }, null, _parent));
+			_push(`<div class="auth-page" data-v-0f951a4a><section class="auth-left" data-v-0f951a4a><div class="brand" data-v-0f951a4a><div class="brand-mark" data-v-0f951a4a>H</div><span data-v-0f951a4a>Haven</span></div><div class="welcome-content" data-v-0f951a4a><p class="eyebrow" data-v-0f951a4a>SECURITY CHECK</p><h1 data-v-0f951a4a>Confirm Your Password</h1><p class="welcome-copy" data-v-0f951a4a> This is a secure area of Haven. Confirm your password before continuing. </p></div></section><section class="auth-right" data-v-0f951a4a><div class="form-card" data-v-0f951a4a><div class="form-heading" data-v-0f951a4a><h2 data-v-0f951a4a>Confirm Password</h2><p data-v-0f951a4a> Enter your current password to continue. </p></div><form data-v-0f951a4a><div class="field" data-v-0f951a4a><label for="password" data-v-0f951a4a>Password</label><input id="password"${ssrRenderAttr("value", unref(form).password)} type="password" autocomplete="current-password" autofocus placeholder="Enter your password" data-v-0f951a4a>`);
+			if (unref(form).errors.password) _push(`<p class="field-error" data-v-0f951a4a>${ssrInterpolate(unref(form).errors.password)}</p>`);
+			else _push(`<!---->`);
+			_push(`</div><button type="submit" class="confirm-button"${ssrIncludeBooleanAttr(unref(form).processing) ? " disabled" : ""} data-v-0f951a4a>${ssrInterpolate(unref(form).processing ? "Confirming..." : "Confirm Password")}</button></form></div></section></div><!--]-->`);
+		};
+	}
+};
+var _sfc_setup$25 = _sfc_main$25.setup;
+_sfc_main$25.setup = (props, ctx) => {
+	const ssrContext = useSSRContext();
+	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Auth/ConfirmPassword.vue");
+	return _sfc_setup$25 ? _sfc_setup$25(props, ctx) : void 0;
+};
+var ConfirmPassword_default = /*#__PURE__*/ _plugin_vue_export_helper_default(_sfc_main$25, [["__scopeId", "data-v-0f951a4a"]]);
+//#endregion
 //#region resources/js/Pages/Auth/ForgotPassword.vue
 var ForgotPassword_exports = /* @__PURE__ */ __exportAll({ default: () => ForgotPassword_default });
 var _sfc_main$24 = {
@@ -970,6 +970,9 @@ var _sfc_main$21 = {
 		}
 	},
 	setup(__props) {
+		const route = (name, params = void 0) => {
+			return B(name, params, void 0, Ziggy$1);
+		};
 		const props = __props;
 		const form = useForm({
 			token: props.token,
@@ -980,14 +983,14 @@ var _sfc_main$21 = {
 		return (_ctx, _push, _parent, _attrs) => {
 			_push(`<!--[-->`);
 			_push(ssrRenderComponent(unref(Head), { title: "Reset Password" }, null, _parent));
-			_push(`<div class="auth-page" data-v-c4dfe433><section class="auth-left" data-v-c4dfe433><div class="brand" data-v-c4dfe433><div class="brand-mark" data-v-c4dfe433>H</div><span data-v-c4dfe433>Haven</span></div><div class="welcome-content" data-v-c4dfe433><p class="eyebrow" data-v-c4dfe433>ACCOUNT RECOVERY</p><h1 data-v-c4dfe433>Create New Password</h1><p class="welcome-copy" data-v-c4dfe433> Choose a new password for your Haven account. </p></div></section><section class="auth-right" data-v-c4dfe433><div class="form-card" data-v-c4dfe433><div class="form-heading" data-v-c4dfe433><h2 data-v-c4dfe433>Reset Password</h2><p data-v-c4dfe433>Enter your new password below.</p></div><form data-v-c4dfe433><div class="field" data-v-c4dfe433><label for="email" data-v-c4dfe433>Email</label><input id="email"${ssrRenderAttr("value", unref(form).email)} type="email" autocomplete="username" readonly data-v-c4dfe433>`);
-			if (unref(form).errors.email) _push(`<p class="field-error" data-v-c4dfe433>${ssrInterpolate(unref(form).errors.email)}</p>`);
+			_push(`<div class="auth-page" data-v-d2595955><section class="auth-left" data-v-d2595955><div class="brand" data-v-d2595955><div class="brand-mark" data-v-d2595955>H</div><span data-v-d2595955>Haven</span></div><div class="welcome-content" data-v-d2595955><p class="eyebrow" data-v-d2595955>ACCOUNT RECOVERY</p><h1 data-v-d2595955>Create New Password</h1><p class="welcome-copy" data-v-d2595955> Choose a new password for your Haven account. </p></div></section><section class="auth-right" data-v-d2595955><div class="form-card" data-v-d2595955><div class="form-heading" data-v-d2595955><h2 data-v-d2595955>Reset Password</h2><p data-v-d2595955>Enter your new password below.</p></div><form data-v-d2595955><div class="field" data-v-d2595955><label for="email" data-v-d2595955>Email</label><input id="email"${ssrRenderAttr("value", unref(form).email)} type="email" autocomplete="username" readonly data-v-d2595955>`);
+			if (unref(form).errors.email) _push(`<p class="field-error" data-v-d2595955>${ssrInterpolate(unref(form).errors.email)}</p>`);
 			else _push(`<!---->`);
-			_push(`</div><div class="field" data-v-c4dfe433><label for="password" data-v-c4dfe433>New Password</label><input id="password"${ssrRenderAttr("value", unref(form).password)} type="password" autocomplete="new-password" autofocus placeholder="Enter new password" data-v-c4dfe433>`);
-			if (unref(form).errors.password) _push(`<p class="field-error" data-v-c4dfe433>${ssrInterpolate(unref(form).errors.password)}</p>`);
+			_push(`</div><div class="field" data-v-d2595955><label for="password" data-v-d2595955>New Password</label><input id="password"${ssrRenderAttr("value", unref(form).password)} type="password" autocomplete="new-password" autofocus placeholder="Enter new password" data-v-d2595955>`);
+			if (unref(form).errors.password) _push(`<p class="field-error" data-v-d2595955>${ssrInterpolate(unref(form).errors.password)}</p>`);
 			else _push(`<!---->`);
-			_push(`</div><div class="field" data-v-c4dfe433><label for="password_confirmation" data-v-c4dfe433> Confirm New Password </label><input id="password_confirmation"${ssrRenderAttr("value", unref(form).password_confirmation)} type="password" autocomplete="new-password" placeholder="Confirm new password" data-v-c4dfe433></div><button type="submit" class="reset-button"${ssrIncludeBooleanAttr(unref(form).processing) ? " disabled" : ""} data-v-c4dfe433>${ssrInterpolate(unref(form).processing ? "Resetting..." : "Reset Password")}</button></form><p class="back-link" data-v-c4dfe433>`);
-			_push(ssrRenderComponent(unref(Link), { href: _ctx.route("login") }, {
+			_push(`</div><div class="field" data-v-d2595955><label for="password_confirmation" data-v-d2595955> Confirm New Password </label><input id="password_confirmation"${ssrRenderAttr("value", unref(form).password_confirmation)} type="password" autocomplete="new-password" placeholder="Confirm new password" data-v-d2595955></div><button type="submit" class="reset-button"${ssrIncludeBooleanAttr(unref(form).processing) ? " disabled" : ""} data-v-d2595955>${ssrInterpolate(unref(form).processing ? "Resetting..." : "Reset Password")}</button></form><p class="back-link" data-v-d2595955>`);
+			_push(ssrRenderComponent(unref(Link), { href: route("login") }, {
 				default: withCtx((_, _push, _parent, _scopeId) => {
 					if (_push) _push(` Back to Login `);
 					else return [createTextVNode(" Back to Login ")];
@@ -1004,7 +1007,7 @@ _sfc_main$21.setup = (props, ctx) => {
 	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Auth/ResetPassword.vue");
 	return _sfc_setup$21 ? _sfc_setup$21(props, ctx) : void 0;
 };
-var ResetPassword_default = /*#__PURE__*/ _plugin_vue_export_helper_default(_sfc_main$21, [["__scopeId", "data-v-c4dfe433"]]);
+var ResetPassword_default = /*#__PURE__*/ _plugin_vue_export_helper_default(_sfc_main$21, [["__scopeId", "data-v-d2595955"]]);
 //#endregion
 //#region resources/js/Pages/Auth/VerifyEmail.vue
 var VerifyEmail_exports = /* @__PURE__ */ __exportAll({ default: () => VerifyEmail_default });
@@ -1016,16 +1019,19 @@ var _sfc_main$20 = {
 		default: null
 	} },
 	setup(__props) {
+		const route = (name, params = void 0) => {
+			return B(name, params, void 0, Ziggy$1);
+		};
 		const form = useForm({});
 		return (_ctx, _push, _parent, _attrs) => {
 			_push(`<!--[-->`);
 			_push(ssrRenderComponent(unref(Head), { title: "Verify Email" }, null, _parent));
-			_push(`<div class="auth-page" data-v-5700de8e><section class="auth-left" data-v-5700de8e><div class="brand" data-v-5700de8e><div class="brand-mark" data-v-5700de8e>H</div><span data-v-5700de8e>Haven</span></div><div class="welcome-content" data-v-5700de8e><p class="eyebrow" data-v-5700de8e>EMAIL VERIFICATION</p><h1 data-v-5700de8e>Check Your Inbox</h1><p class="welcome-copy" data-v-5700de8e> Haven has sent you a verification link. Open the email and confirm your address to continue. </p></div></section><section class="auth-right" data-v-5700de8e><div class="form-card" data-v-5700de8e><div class="form-heading" data-v-5700de8e><h2 data-v-5700de8e>Verify Email</h2><p data-v-5700de8e> Before continuing, please verify your email address. </p></div>`);
-			if (__props.status === "verification-link-sent") _push(`<div class="status-message" data-v-5700de8e> A new verification link has been sent to your email address. </div>`);
+			_push(`<div class="auth-page" data-v-bfe8ab54><section class="auth-left" data-v-bfe8ab54><div class="brand" data-v-bfe8ab54><div class="brand-mark" data-v-bfe8ab54>H</div><span data-v-bfe8ab54>Haven</span></div><div class="welcome-content" data-v-bfe8ab54><p class="eyebrow" data-v-bfe8ab54>EMAIL VERIFICATION</p><h1 data-v-bfe8ab54>Check Your Inbox</h1><p class="welcome-copy" data-v-bfe8ab54> Haven has sent you a verification link. Open the email and confirm your address to continue. </p></div></section><section class="auth-right" data-v-bfe8ab54><div class="form-card" data-v-bfe8ab54><div class="form-heading" data-v-bfe8ab54><h2 data-v-bfe8ab54>Verify Email</h2><p data-v-bfe8ab54> Before continuing, please verify your email address. </p></div>`);
+			if (__props.status === "verification-link-sent") _push(`<div class="status-message" data-v-bfe8ab54> A new verification link has been sent to your email address. </div>`);
 			else _push(`<!---->`);
-			_push(`<form data-v-5700de8e><button type="submit" class="verify-button"${ssrIncludeBooleanAttr(unref(form).processing) ? " disabled" : ""} data-v-5700de8e>${ssrInterpolate(unref(form).processing ? "Sending..." : "Resend Verification Email")}</button></form>`);
+			_push(`<form data-v-bfe8ab54><button type="submit" class="verify-button"${ssrIncludeBooleanAttr(unref(form).processing) ? " disabled" : ""} data-v-bfe8ab54>${ssrInterpolate(unref(form).processing ? "Sending..." : "Resend Verification Email")}</button></form>`);
 			_push(ssrRenderComponent(unref(Link), {
-				href: _ctx.route("logout"),
+				href: route("logout"),
 				method: "post",
 				as: "button",
 				class: "logout-link"
@@ -1046,7 +1052,7 @@ _sfc_main$20.setup = (props, ctx) => {
 	(ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Auth/VerifyEmail.vue");
 	return _sfc_setup$20 ? _sfc_setup$20(props, ctx) : void 0;
 };
-var VerifyEmail_default = /*#__PURE__*/ _plugin_vue_export_helper_default(_sfc_main$20, [["__scopeId", "data-v-5700de8e"]]);
+var VerifyEmail_default = /*#__PURE__*/ _plugin_vue_export_helper_default(_sfc_main$20, [["__scopeId", "data-v-bfe8ab54"]]);
 //#endregion
 //#region resources/js/Pages/Dashboard.vue
 var Dashboard_exports = /* @__PURE__ */ __exportAll({ default: () => Dashboard_default });

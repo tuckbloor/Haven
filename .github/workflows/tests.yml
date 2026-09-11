@@ -119,3 +119,6 @@ jobs:
 
       - name: Run database migrations
         run: docker compose -f compose.test.yaml exec -T app php artisan migrate --force
+
+      - name: Set SQLite database permissions
+        run: docker compose -f compose.test.yaml exec -T app chmod 666 database/testing.sqlite

@@ -66,7 +66,7 @@
 
                         <h1>
                             A smarter home
-                            <span>in your hands</span>
+                            <span>every single day</span>
                         </h1>
 
                         <p class="hero-description">

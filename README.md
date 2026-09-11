@@ -1,21 +1,37 @@
 # Haven
 
-Haven is a smart-home automation simulator built with **Laravel 13** and **Vue 3**.
+Haven is a full-stack smart-home automation simulator built with **Laravel 13**, **Vue 3**, **Inertia.js**, and **SQLite**.
 
-The project is being developed as a practical application for learning and demonstrating modern full-stack development, automated testing, Docker, Continuous Integration (CI), and eventually Continuous Deployment (CD).
+The project is designed both as a complete smart-home application and as a practical environment for developing and demonstrating professional software engineering skills including:
 
-Haven will allow users to create and manage a simulated smart home containing rooms, devices, automations, schedules, and alerts.
+- Full-stack Laravel and Vue development
+- Automated testing
+- Docker and containerisation
+- Continuous Integration
+- Continuous Deployment
+- GitHub Actions
+- Deployment automation
+- Modern development workflows
+
+Haven is being developed incrementally, with each new feature accompanied by appropriate automated testing and pipeline improvements.
 
 ---
 
-## Project Goals
+## Project Overview
 
-Haven has two main goals:
+Haven allows users to create and manage a simulated smart home containing:
 
-1. Build a complete smart-home management application.
-2. Use the project to learn and demonstrate professional development, testing, Docker, and CI/CD practices.
+- Homes
+- Rooms
+- Smart devices
+- Device states
+- Automations
+- Schedules
+- Alerts
+- Activity history
+- Dashboard statistics
 
-The project will gradually introduce more advanced testing and DevOps techniques as development progresses.
+The application provides a realistic domain for developing and testing everything from authentication and database behaviour through to automation rules, APIs, queues, events, notifications, and deployment pipelines.
 
 ---
 
@@ -28,6 +44,7 @@ The project will gradually introduce more advanced testing and DevOps techniques
 - Laravel Breeze
 - Inertia.js
 - SQLite
+- PHPUnit
 
 ### Frontend
 
@@ -37,7 +54,7 @@ The project will gradually introduce more advanced testing and DevOps techniques
 - Tailwind CSS
 - Inertia.js
 
-### Development & Deployment
+### Infrastructure & DevOps
 
 - Docker
 - Docker Compose
@@ -46,14 +63,16 @@ The project will gradually introduce more advanced testing and DevOps techniques
 - Git
 - GitHub
 - GitHub Actions
+- Self-hosted GitHub Actions runner
+- Automated CI/CD pipeline
 
 ---
 
 ## Application Architecture
 
-Haven is a normal Laravel and Vue application.
+Haven is a standard Laravel and Vue application.
 
-Docker provides an isolated environment around the application but the source code remains a standard Laravel project.
+Docker provides a containerised runtime around the application without making the source code dependent on Docker.
 
 ```text
 Haven
@@ -63,6 +82,7 @@ Haven
 │   ├── Controllers
 │   ├── Models
 │   ├── Services
+│   ├── Validation
 │   └── PHPUnit Tests
 │
 ├── Vue 3
@@ -71,7 +91,7 @@ Haven
 │   └── Frontend Tests
 │
 ├── Inertia.js
-│   └── Connects Laravel and Vue
+│   └── Laravel ↔ Vue integration
 │
 ├── SQLite
 │
@@ -80,16 +100,19 @@ Haven
 │   └── PHP-FPM
 │
 └── GitHub Actions
-    └── Automated CI Pipeline
+    ├── Continuous Integration
+    └── Continuous Deployment
 ```
+
+This separation allows Haven to be developed normally while also being built, tested, and deployed through an automated container-based workflow.
 
 ---
 
-## Docker
+# Docker
 
-Haven includes a Docker environment for running the application locally in a production-style setup.
+Haven includes Docker environments for running and testing the application in a consistent environment.
 
-The Docker environment currently contains:
+The Docker architecture currently consists of:
 
 ```text
 Docker Compose
@@ -101,18 +124,27 @@ Docker Compose
     └── Laravel application
 ```
 
-The Laravel source code is mounted into the containers, meaning the same application can be developed normally on Windows while also being executed and tested through Docker.
+The Laravel source code is mounted into the containers, allowing the same application source to be used by both the local development environment and Docker.
 
-The local application is available at:
+### Local development deployment
 
 ```text
 http://localhost:8090
 ```
 
-Docker configuration is stored in:
+### Automated CD test deployment
+
+```text
+http://localhost:8092
+```
+
+The two environments are isolated using separate Docker Compose projects.
+
+Docker configuration includes:
 
 ```text
 compose.yaml
+compose.test.yaml
 
 docker/
 ├── nginx/
@@ -124,11 +156,11 @@ docker/
 
 ---
 
-## Automated Testing
+# Automated Testing
 
-Testing is a major part of the Haven project.
+Automated testing is a core part of Haven rather than an afterthought.
 
-Laravel tests are stored under:
+Laravel tests are organised under:
 
 ```text
 tests/
@@ -136,12 +168,10 @@ tests/
 └── Unit/
 ```
 
-The test suite currently covers areas including authentication and user account behaviour.
+The test suite currently covers important application behaviour including:
 
-Examples include:
-
-- Login page
-- User authentication
+- Login
+- Authentication
 - Invalid login attempts
 - Registration
 - Logout
@@ -149,14 +179,18 @@ Examples include:
 - Password confirmation
 - Email verification
 - Profile management
+- Protected routes
+- Dashboard access
+- Verified and unverified users
+- Inertia page responses
 
-Tests can be run locally with:
+Tests can be executed locally using:
 
 ```bash
 php artisan test
 ```
 
-As Haven grows, the testing suite will expand to cover:
+As Haven grows, the test suite will progressively demonstrate:
 
 ```text
 Unit Testing
@@ -167,6 +201,7 @@ Validation Testing
 HTTP Testing
 API Testing
 Mocking
+Spies
 Fakes
 Events
 Notifications
@@ -174,52 +209,59 @@ Queues
 Mail
 Storage
 Scheduled Tasks
+External API Testing
 Frontend Testing
 End-to-End Testing
 ```
 
-The long-term goal is to use Haven to demonstrate a large range of real-world Laravel and PHP testing techniques.
+The goal is not simply to accumulate tests, but to apply the appropriate testing technique to real application behaviour.
 
 ---
 
-## Continuous Integration
+# Continuous Integration
 
-Haven uses **GitHub Actions** for Continuous Integration.
+Haven has an automated **Continuous Integration pipeline using GitHub Actions**.
 
-The workflow is stored in:
+The workflow is defined in:
 
 ```text
 .github/workflows/tests.yml
 ```
 
-When code is pushed to:
+CI runs when code is pushed to:
 
 ```text
 main
 develop
 ```
 
-or a Pull Request targets those branches, GitHub automatically creates a clean Linux environment and validates the application.
+and when Pull Requests target those branches.
 
-The pipeline performs:
+GitHub Actions creates a clean Linux environment and performs the application build and test process automatically.
 
 ```text
-Git Push
+Developer
+    │
+    │ git push
+    ▼
+GitHub
     │
     ▼
 GitHub Actions
     │
-    ├── Checkout Haven
+    ├── Checkout source
     │
-    ├── Install PHP 8.5
+    ├── Configure PHP 8.5
+    │
+    ├── Configure Node 24
     │
     ├── Install Composer dependencies
-    │
-    ├── Install Node 24
     │
     ├── Install npm dependencies
     │
     ├── Configure Laravel
+    │
+    ├── Generate application key
     │
     ├── Generate Ziggy routes
     │
@@ -227,85 +269,213 @@ GitHub Actions
     │
     ├── Build Vue / Vite
     │
-    └── Run Laravel tests
+    └── Run Laravel test suite
     │
     ▼
-PASS / FAIL
+ PASS / FAIL
 ```
 
-This means every pushed change can be automatically checked before it is considered safe.
+A failed test prevents the deployment stage from running.
+
+This provides an automated quality gate between source-code changes and deployment.
 
 ---
 
-## Why CI Matters
+# Continuous Deployment
 
-Without CI, tests depend on a developer remembering to run them manually.
+Haven also includes a working **Continuous Deployment pipeline**.
 
-With Haven's CI pipeline:
+When code is pushed to the `main` branch:
 
 ```text
-Developer changes code
-        ↓
-Developer commits code
-        ↓
-Developer pushes to GitHub
-        ↓
-GitHub automatically builds Haven
-        ↓
-GitHub automatically runs the tests
-        ↓
-       PASS?
-      /     \
-    YES      NO
-     ↓        ↓
-    ✓        ✗
- Safe     Fix code
+git push
+    │
+    ▼
+GitHub Actions
+    │
+    ▼
+Continuous Integration
+    │
+    ├── Install dependencies
+    ├── Build application
+    ├── Run migrations
+    └── Run automated tests
+    │
+    ▼
+Tests pass?
+   / \
+ NO   YES
+ │     │
+ ▼     ▼
+STOP   CD
+       │
+       ▼
+Self-hosted Windows Runner
+       │
+       ├── Checkout latest source
+       ├── Install Composer dependencies
+       ├── Install Node dependencies
+       ├── Configure deployment environment
+       ├── Generate Laravel application key
+       ├── Generate Ziggy routes
+       ├── Build Vue application
+       ├── Build Docker environment
+       ├── Start deployment containers
+       ├── Run database migrations
+       └── Configure SQLite permissions
+       │
+       ▼
+Haven Test Deployment
+http://localhost:8092
 ```
 
-This helps detect problems early and ensures that changes are tested consistently.
+The deployment job runs only when:
+
+1. The change has been pushed to `main`.
+2. The CI job has completed successfully.
+
+This means deployment is dependent on a successful automated test run.
 
 ---
 
-## CI/CD Roadmap
+## CI/CD Architecture
 
-Haven currently focuses on **Continuous Integration**.
-
-Future stages will expand the pipeline to include:
+Haven currently demonstrates the following complete workflow:
 
 ```text
-Code
- ↓
-Automated Tests
- ↓
+                    DEVELOPMENT
+                         │
+                    Change code
+                         │
+                    Git commit
+                         │
+                     Git push
+                         │
+                         ▼
+                 ┌───────────────┐
+                 │    GitHub     │
+                 └───────┬───────┘
+                         │
+                         ▼
+              ┌─────────────────────┐
+              │  GitHub Actions CI  │
+              └──────────┬──────────┘
+                         │
+                  Build + Test
+                         │
+                    ┌────┴────┐
+                    │         │
+                  FAIL       PASS
+                    │         │
+                    ▼         ▼
+                   STOP      CD
+                              │
+                              ▼
+                   ┌──────────────────┐
+                   │ Self-hosted      │
+                   │ Windows Runner   │
+                   └────────┬─────────┘
+                            │
+                       Docker Build
+                            │
+                       DB Migration
+                            │
+                         Deploy
+                            │
+                            ▼
+                  ┌───────────────────┐
+                  │ Haven Test Site   │
+                  │ localhost:8092    │
+                  └───────────────────┘
+```
+
+This provides a practical implementation of:
+
+**Code → Build → Test → Quality Gate → Deploy**
+
+rather than CI/CD existing only as a theoretical exercise.
+
+---
+
+# Why CI/CD Matters
+
+Without automation, developers must remember to manually build, test, and deploy every change.
+
+Haven's pipeline instead provides:
+
+```text
+Source change
+      ↓
+Version control
+      ↓
+Automated build
+      ↓
+Automated tests
+      ↓
+Quality gate
+      ↓
+Automated deployment
+```
+
+This improves consistency and makes failures visible before a change reaches the deployment environment.
+
+It also provides a foundation for adding more advanced DevOps practices later.
+
+---
+
+# Planned Pipeline Improvements
+
+The current CI/CD pipeline provides automated build, testing, and deployment.
+
+Future improvements will progressively introduce:
+
+```text
+PHPUnit
+   ↓
 Frontend Tests
- ↓
+   ↓
 Static Analysis
- ↓
+   ↓
 Code Style Checks
- ↓
+   ↓
 Security Checks
- ↓
-Build Docker Image
- ↓
-Health Check
- ↓
+   ↓
+Docker Image Build
+   ↓
+Container Health Checks
+   ↓
+Versioned Images
+   ↓
 Deployment
- ↓
-Rollback if required
+   ↓
+Post-deployment Verification
+   ↓
+Automated Rollback
 ```
 
-This will allow Haven to be used as a practical environment for learning a complete CI/CD workflow.
+Potential technologies and techniques include:
+
+- Laravel Pint
+- PHPStan / Larastan
+- Vitest
+- Vue Test Utils
+- Playwright
+- Docker image registries
+- Health checks
+- Deployment environments
+- GitHub Secrets
+- Versioned releases
+- Rollback strategies
 
 ---
 
-## Planned Haven Features
+# Planned Haven Features
 
-Haven will gradually grow into a complete simulated smart-home system.
+Haven will progressively grow into a complete simulated smart-home management system.
 
 Planned functionality includes:
 
-- User authentication
-- Homes
+- Multiple homes
 - Rooms
 - Smart devices
 - Device status
@@ -337,7 +507,7 @@ Home
     └── Heating
 ```
 
-Automations will eventually allow rules such as:
+Automations will support rules such as:
 
 ```text
 IF motion is detected
@@ -345,16 +515,16 @@ AND time is after 18:00
 THEN turn on hallway light
 ```
 
-These features will provide realistic scenarios for automated testing.
+These features provide realistic scenarios for increasingly advanced automated testing.
 
 ---
 
-## Development Workflow
+# Development Workflow
 
-The intended Haven development workflow is:
+The Haven development process follows a test-driven and automated delivery workflow:
 
 ```text
-Create feature
+Develop feature
       ↓
 Write / update tests
       ↓
@@ -364,40 +534,57 @@ Commit changes
       ↓
 Push to GitHub
       ↓
-GitHub Actions runs CI
+GitHub Actions CI
       ↓
-PASS
+Automated build
       ↓
-Continue development
+Automated tests
+      ↓
+     PASS?
+    /     \
+   NO      YES
+   │        │
+   ▼        ▼
+ Fix      Deploy
+ code       │
+            ▼
+      CD test environment
 ```
 
-If CI fails, the failure can be investigated before the change progresses further.
+This allows each new feature to exercise both the application architecture and the delivery pipeline.
 
 ---
 
-## Project Status
+# Current Project Status
 
-Haven is currently under active development.
+Haven currently includes:
 
-Current work includes:
+- ✅ Laravel 13
+- ✅ PHP 8.5
+- ✅ Vue 3
+- ✅ Composition API
+- ✅ Inertia.js
+- ✅ Server-side rendering support
+- ✅ Laravel Breeze authentication
+- ✅ SQLite
+- ✅ Docker
+- ✅ Docker Compose
+- ✅ nginx
+- ✅ PHP-FPM
+- ✅ PHPUnit automated tests
+- ✅ GitHub repository
+- ✅ GitHub Actions
+- ✅ Continuous Integration
+- ✅ CI quality gate before deployment
+- ✅ Self-hosted GitHub Actions runner
+- ✅ Automated Continuous Deployment
+- ✅ Separate CD test environment
 
-- Laravel 13 application
-- Vue 3 frontend
-- Inertia.js integration
-- Server-side rendering support
-- Laravel Breeze authentication
-- SQLite database
-- Docker development environment
-- nginx + PHP-FPM
-- PHPUnit automated tests
-- GitHub repository
-- GitHub Actions CI pipeline
-
-Future development will add the smart-home domain and progressively more advanced testing and DevOps practices.
+Development is now moving toward the smart-home domain and progressively more advanced automated testing and DevOps practices.
 
 ---
 
-## Repository
+# Repository
 
 Haven is maintained on GitHub under:
 
@@ -407,6 +594,6 @@ tuckbloor/Haven
 
 ---
 
-## License
+# License
 
 This project is licensed under the terms contained in the repository's `LICENSE` file.
